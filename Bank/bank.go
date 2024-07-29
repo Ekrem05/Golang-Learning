@@ -1,6 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
+func writeInFile(balance float64){
+	balanceText := fmt.Sprint(balance);
+	os.WriteFile("balance", []byte(balanceText), 0644)
+}
 
 func main() {
 	var balance float64 = 10000; 
@@ -26,6 +33,7 @@ func main() {
 				continue;
 			}
 			balance += depositAmount;
+			writeInFile(balance)
 			fmt.Printf("Current balance: %.2f \n", balance)
 		} else if choice == 3 {
 			fmt.Print("Amount: ")
@@ -40,6 +48,7 @@ func main() {
 				continue;
 			}
 			balance -= withdrawAmount;
+			writeInFile(balance)
 			fmt.Printf("Current balance: %.2f \n", balance)
 		} else{
 			fmt.Print("Goodbye!")
