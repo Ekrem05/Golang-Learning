@@ -5,8 +5,19 @@ import (
 )
 
 func main() {
-	var revenue, expenses, taxRate float64
+	revenue, expenses, taxRate := readAndReturn();
 
+	
+	earningsBeforeTax,profit,ratio:=calculate(revenue,expenses,taxRate);
+
+	fmt.Println("Earnings before tax: ",earningsBeforeTax)
+	fmt.Println("Profit: ",profit)
+	fmt.Println("Ratio: ",ratio)
+
+}
+
+func readAndReturn()(revenue float64,expenses float64,taxRate float64){
+	
 	fmt.Print("Revenue: ")
 	fmt.Scan(&revenue);
 
@@ -16,13 +27,13 @@ func main() {
 	fmt.Print("Tax Rate: ")
 	fmt.Scan(&taxRate);
 
-	earningsBeforeTax:=revenue-expenses;
-	profit:=earningsBeforeTax-(earningsBeforeTax*taxRate/100)
+	return
+}
+func calculate(revenue, expenses, taxRate float64)(earningsBeforeTax, profit, ratio float64){
+	
+	earningsBeforeTax=revenue-expenses;
+	profit=earningsBeforeTax-(earningsBeforeTax*taxRate/100)
+	ratio =earningsBeforeTax/profit
 
-	ratio :=earningsBeforeTax/profit
-
-	fmt.Println("Earnings before tax: ",earningsBeforeTax)
-	fmt.Println("Profit: ",profit)
-	fmt.Println("Ratio: ",ratio)
-
+	return
 }
