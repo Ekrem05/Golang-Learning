@@ -12,7 +12,7 @@ func main() {
 
 	fmt.Println("Earnings before tax: ",earningsBeforeTax)
 	fmt.Println("Profit: ",profit)
-	fmt.Println("Ratio: ",ratio)
+	fmt.Printf("Ratio: %.3f",ratio)
 
 }
 
