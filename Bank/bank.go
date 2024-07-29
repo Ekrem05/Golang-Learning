@@ -3,14 +3,21 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
+func getBalance()(balance float64){
+	bytes,_:=os.ReadFile("balance")
+	text:=string(bytes);
+	balance,_=strconv.ParseFloat(text,64);
+	return
+}
 func writeInFile(balance float64){
 	balanceText := fmt.Sprint(balance);
 	os.WriteFile("balance", []byte(balanceText), 0644)
 }
 
 func main() {
-	var balance float64 = 10000; 
+	var balance float64 = getBalance(); 
 	for {
 		fmt.Println("Welcome to GO Lang");
 		fmt.Println("What do you want to do?")
