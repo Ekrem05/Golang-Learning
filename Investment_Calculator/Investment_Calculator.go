@@ -31,8 +31,9 @@ func customPrint(text string){
 	fmt.Println(text)
 }
 
-func calculateFutureValues(investmentAmount, expectedReturn, years float64)(float64,float64){
-	futureValue := investmentAmount* math.Pow(1+expectedReturn/100,years);
-	futureRealValue := futureValue/ math.Pow(1+inflationRate/100,years);
-	return futureValue, futureRealValue;
+func calculateFutureValues(investmentAmount, expectedReturn, years float64)(futureValue float64,futureRealValue float64){
+	futureValue = investmentAmount* math.Pow(1+expectedReturn/100,years);
+	futureRealValue = futureValue/ math.Pow(1+inflationRate/100,years);
+	//return futureValue, futureRealValue;
+	return;
 }
