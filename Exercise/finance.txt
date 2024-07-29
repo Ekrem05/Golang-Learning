@@ -1,0 +1,3 @@
+Before taxes: 9800.000000 
+ Profit: 7644.000000 
+ Ratio: 1.282051
