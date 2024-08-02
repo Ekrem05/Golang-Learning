@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"bank.com/utils"
 )
 func getBalance()(balance float64){
 	bytes,_:=os.ReadFile("balance")
@@ -19,13 +21,7 @@ func writeInFile(balance float64){
 func main() {
 	var balance float64 = getBalance(); 
 	for {
-		fmt.Println("Welcome to GO Lang");
-		fmt.Println("What do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit money")
-		fmt.Println("3. Withdraw money")
-		fmt.Println("4. Exit")
-		fmt.Print("Please choose an action: ")
+		utils.PrintMenu()
 		var choice int
 		fmt.Scan(&choice)
 	
