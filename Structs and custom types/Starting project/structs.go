@@ -20,20 +20,21 @@ func (user *User) clearUsername(){
 	user.firstName=""
 	user.lastName=""
 }
+
+func newUser(firstName,lastName,birthdate string) User {
+	return User{
+		firstName,
+		lastName,
+		birthdate,
+		time.Now(),
+	}
+}
+
 func main() {
 	firstName := getUserData("Please enter your first name: ")
 	lastName := getUserData("Please enter your last name: ")
 	birthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
-	var user = User{
-		// firstName: firstName,
-		// lastName: lastName,
-		// birthdate: birthdate,
-		// createdAt: time.Now(),
-		firstName,
-		lastName,
-		birthdate,
-		time.Now(),	
-	}
+	var user = newUser(firstName,lastName,birthdate)
 	user.outputUserDetails()
 	user.clearUsername()
 	user.outputUserDetails()
