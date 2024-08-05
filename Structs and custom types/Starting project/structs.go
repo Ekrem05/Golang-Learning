@@ -11,8 +11,14 @@ type User struct {
 	birthdate string
 	createdAt time.Time
 }
+
 func (user User) outputUserDetails(){
-	fmt.Print(user.firstName,user.lastName,user.birthdate,user.createdAt)
+	fmt.Println(user.firstName,user.lastName,user.birthdate,user.createdAt)
+}
+//the reciever is just like a normal parameter
+func (user *User) clearUsername(){
+	user.firstName=""
+	user.lastName=""
 }
 func main() {
 	firstName := getUserData("Please enter your first name: ")
@@ -28,6 +34,8 @@ func main() {
 		birthdate,
 		time.Now(),	
 	}
+	user.outputUserDetails()
+	user.clearUsername()
 	user.outputUserDetails()
 }
 
