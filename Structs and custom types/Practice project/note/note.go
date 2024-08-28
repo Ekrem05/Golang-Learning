@@ -7,16 +7,16 @@ import (
 	"time"
 )
 type Note struct {
-	title     string    `json:"title"`
-	content   string    `json:"content"`
-	createdAt time.Time `json:"created_at"`
+	Title     string    `json:"title"`
+	Content   string    `json:"content"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func NewNote(title, content string) Note {
 	return Note{
-		title: title,
-		content: content,
-		createdAt: time.Now(),
+		Title: title,
+		Content: content,
+		CreatedAt: time.Now(),
 	}
 }
 func (note Note) SaveToJson(fileName string) {
