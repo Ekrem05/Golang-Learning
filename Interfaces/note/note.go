@@ -2,6 +2,7 @@ package note
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"time"
@@ -19,17 +20,17 @@ func NewNote(title, content string) Note {
 		CreatedAt: time.Now(),
 	}
 }
-func (note Note) SaveToJson(fileName string) {
-	file,err:=os.Create(fileName);
+func (note Note) Save(fileName string) error {
+	file,err:=os.Create(fileName+".json");
 	if err!=nil{
-		fmt.Print("Error creating a file")
+		return errors.New("Error while creating a todo")
 	}
 	encoder :=json.NewEncoder(file)
 
 	encodingErr:=encoder.Encode(note);
 	if encodingErr != nil {
-        fmt.Println("Error encoding JSON to file:", encodingErr)
-        return;
+		return errors.New("Error encoding JSON to file")
     }
-	fmt.Println("JSON data written to person.json")
+	fmt.Println("JSON data written to ", fileName)
+	return nil
 }

@@ -8,10 +8,11 @@ import (
 	"strings"
 
 	"interface/note"
+	"interface/todo"
 )
 
 type saver interface{
-	Save() error
+	Save(string) error
 }
 
 func main(){
@@ -21,7 +22,23 @@ func main(){
 		return;
 	}
 	myNote:=note.NewNote(title,content)
-	myNote.SaveToJson("firstNote")
+	saveNoteErr:=save(myNote.Title,myNote);
+	if saveNoteErr!=nil{
+		fmt.Print(saveNoteErr.Error())
+		return;
+	}
+	text,err:=getUserInputToDo()
+	if err !=nil{
+		fmt.Print(err)
+		return;
+	}
+
+	todo:=todo.New(text)
+	saveTodoErr:=save("todo",todo)
+	if saveTodoErr!=nil{
+		fmt.Print(saveTodoErr.Error())
+		return;
+	}
 }
 
 func getUserInput() (string,string,error){
@@ -56,4 +73,30 @@ func getUserInput() (string,string,error){
 	content = strings.TrimSuffix(content,"\r")
 
 	return title,content,nil
+}
+func getUserInputToDo() (string,error){
+
+	fmt.Print("Text:")
+	reader:=bufio.NewReader(os.Stdin)
+	text,err:=reader.ReadString('\n')
+
+	if err!=nil{
+		return "",errors.New("Failed to read")
+	}
+
+	if text == "" {
+		return "",errors.New("Inputs cannot be empty");
+	}
+
+	text = strings.TrimSuffix(text,"\n")
+	text = strings.TrimSuffix(text,"\r")
+
+	return text,nil
+}
+func save(title string,data saver)error{
+	err:=data.Save(title);
+	if err!=nil{
+		return err;
+	}
+	return nil;
 }
