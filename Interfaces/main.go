@@ -10,6 +10,10 @@ import (
 	"interface/note"
 )
 
+type saver interface{
+	Save() error
+}
+
 func main(){
 	title, content,err:=getUserInput()
 	if err !=nil{
