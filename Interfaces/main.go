@@ -100,3 +100,6 @@ func save(title string,data saver)error{
 	}
 	return nil;
 }
+func add[T int|float64|string](a,b T) T{
+	return a+b;
+}
