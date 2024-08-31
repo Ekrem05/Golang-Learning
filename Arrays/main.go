@@ -3,15 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	var products [4]string = [4]string {"Book", "Ball","","Car"}
-	products[2]="Toy"
-	
-	bestProducts := products[1:2]
-	otherProducts:=bestProducts[:3]	
-	fmt.Print(bestProducts)
-	fmt.Println(otherProducts)
-	fmt.Print(len(bestProducts), cap(bestProducts))
-
-	prices := [4]int{10,30,12,5}
+	var prices = []float64{11.2};
+	prices = append(prices, 12.99);
+	prices = append(prices, 30.11);
 	fmt.Print(prices)
+	
 }
